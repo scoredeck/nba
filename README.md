@@ -1,1 +1,1 @@
-# nba-ts
+# @scoredeck/nba
