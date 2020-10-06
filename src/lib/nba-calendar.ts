@@ -50,5 +50,5 @@ export function createCurrentCalendar(calendar: NbaLegacyCalendar): NbaCalendar[
 
   currentSeason.splice(0, currentSeasonStartIndex);
   currentSeason.splice(currentSeasonEndIndex, currentSeason.length - currentSeasonEndIndex);
-  return currentSeason;
+  return currentSeason.filter(day => day.games !== 0);
 }
