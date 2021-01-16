@@ -1,34 +1,10 @@
+import { TEAMS } from '../config/nba-teams';
+import { NbaScoreboardGame, NbaScoreBoardGameTeam } from '../nba-ts';
 import {
   NbaLegacyScoreboard,
   NbaLegacyScoreboardGame,
   NbaLegacyScoreboardTeam,
 } from './legacy/nba-legacy-scoreboard';
-import { TEAMS } from '../config/nba-teams';
-
-export interface NbaScoreboardGame {
-  id: string;
-  broadcaster: string;
-  clock: string;
-  currentPeriod: number;
-  isComplete: boolean;
-  isHalftime: boolean;
-  isOvertime: boolean;
-  isPlayoffs: boolean;
-  isStarted: boolean;
-  seriesRecord: string;
-  startTimeEST: string;
-  home: NbaScoreBoardGameTeam;
-  visitor: NbaScoreBoardGameTeam;
-}
-
-interface NbaScoreBoardGameTeam {
-  id: string;
-  name: string;
-  triCode: string;
-  record: string;
-  points: string;
-  lineScore: string[];
-}
 
 export function createScoreBoard(scoreboard: NbaLegacyScoreboard): NbaScoreboardGame[] {
   if (!scoreboard) {

@@ -32,23 +32,23 @@ export function createCurrentCalendar(calendar: NbaLegacyCalendar): NbaCalendar[
   if (!calendar) {
     throw new Error('Unable to get response');
   }
+
+  const startDate = calendar.startDateCurrentSeason;
+  const endDate = calendar.endDate;
   // scrap internal, has no value.
   delete calendar._internal;
   delete calendar.startDate;
   delete calendar.endDate;
   delete calendar.startDateCurrentSeason;
 
-  const currentSeason = Object.entries(calendar).map<NbaCalendar>(games => ({
+  let currentSeason = Object.entries(calendar).map<NbaCalendar>(games => ({
     id: games[0],
     games: +(games[1] as string),
     date: fromYYYYMMDDToDate(games[0]),
   }));
-  const currentSeasonStartIndex = currentSeason.findIndex(
-    g => g.id === calendar.startDateCurrentSeason,
+  const currentSeasonStartIndex = currentSeason.findIndex(g => g.id === startDate);
+  const currentSeasonEndIndex = currentSeason.findIndex(g => g.id === endDate);
+  return currentSeason.filter(
+    (day, i) => day.games !== 0 && i >= currentSeasonStartIndex && i <= currentSeasonEndIndex,
   );
-  const currentSeasonEndIndex = currentSeason.findIndex(g => g.id === calendar.endDate);
-
-  currentSeason.splice(0, currentSeasonStartIndex);
-  currentSeason.splice(currentSeasonEndIndex, currentSeason.length - currentSeasonEndIndex);
-  return currentSeason.filter(day => day.games !== 0);
 }

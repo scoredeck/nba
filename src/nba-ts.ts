@@ -1,11 +1,11 @@
 import { AbortController } from 'abort-controller';
-import { FETCH_OPTIONS } from 'config/fetch-options';
-import { ROUTES } from 'config/routes';
 import { Observable, throwError } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { root } from 'rxjs/internal-compatibility';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
+import { FETCH_OPTIONS } from './config/fetch-options';
+import { ROUTES } from './config/routes';
 import { NbaLegacyBoxScore } from './lib/legacy/nba-legacy-boxscore';
 import { NbaLegacyCalendar } from './lib/legacy/nba-legacy-calendar';
 import { NbaLegacyPbp } from './lib/legacy/nba-legacy-pbp';
@@ -21,7 +21,7 @@ import { createNbaGame } from './lib/nba-game';
 import { createNbaPlayByPlay } from './lib/nba-play-by-play';
 import { createNbaPlayerProfile } from './lib/nba-player-profile';
 import { createNbaPlayerById, createNbaPlayers, createNbaPlayersByTeamId } from './lib/nba-players';
-import { createScoreBoard, NbaScoreboardGame } from './lib/nba-scoreboard';
+import { createScoreBoard } from './lib/nba-scoreboard';
 
 const fetch = require('node-fetch');
 
@@ -360,4 +360,29 @@ export interface NbaPlayerDraft {
   pick: string;
   round: string;
   year: string;
+}
+
+export interface NbaScoreboardGame {
+  id: string;
+  broadcaster: string;
+  clock: string;
+  currentPeriod: number;
+  isComplete: boolean;
+  isHalftime: boolean;
+  isOvertime: boolean;
+  isPlayoffs: boolean;
+  isStarted: boolean;
+  seriesRecord: string;
+  startTimeEST: string;
+  home: NbaScoreBoardGameTeam;
+  visitor: NbaScoreBoardGameTeam;
+}
+
+export interface NbaScoreBoardGameTeam {
+  id: string;
+  name: string;
+  triCode: string;
+  record: string;
+  points: string;
+  lineScore: string[];
 }
