@@ -20,7 +20,7 @@
   "author": "Justin Conklin <justin@eyev.org>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eyev/nba.ts.git"
+    "url": "git+https://github.com/scoredeck/nba.git"
   },
   "license": "MIT",
   "engines": {
@@ -135,9 +135,9 @@
     "handlebars": "4.5.0"
   },
   "bugs": {
-    "url": "https://github.com/eyev/nba.ts/issues"
+    "url": "https://github.com/scoredeck/nba/issues"
   },
-  "homepage": "https://github.com/eyev/nba.ts#readme",
+  "homepage": "https://github.com/scoredeck/nba#readme",
   "directories": {
     "doc": "docs",
     "test": "test"
